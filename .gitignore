@@ -51,5 +51,5 @@ PROJECT_CONTEXT.md
 # Vector Database Storage
 comparison/qdrant_storage/
 
-# Large Data Files (optional - uncomment if needed)
-# comparison/data/documents/*.pdf
+# Large Data Files - PDF Documents
+comparison/data/documents/*.pdf
