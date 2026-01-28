@@ -48,6 +48,8 @@ implementation_plan.md
 GROUND_RULES.md
 PROJECT_CONTEXT.md
 
+# Vector Database Storage
+comparison/qdrant_storage/
+
 # Large Data Files (optional - uncomment if needed)
 # comparison/data/documents/*.pdf
-# comparison/qdrant_storage/
