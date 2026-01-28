@@ -1,0 +1,124 @@
+[
+  {
+    "title": "추진 배경",
+    "page": 3,
+    "children": [],
+    "node_id": "1"
+  },
+  {
+    "title": "장 고영향 인공지능사업자 책무 이행 목적",
+    "page": 4,
+    "children": [
+      {
+        "title": "가이드라인 목적",
+        "page": 4,
+        "node_id": "2.1"
+      },
+      {
+        "title": "가이드라인 적용 방법",
+        "page": 5,
+        "node_id": "2.2"
+      }
+    ],
+    "node_id": "2"
+  },
+  {
+    "title": "가이드라인 적용 방법",
+    "page": 6,
+    "children": [],
+    "node_id": "3"
+  },
+  {
+    "title": "주요 용어의 개념",
+    "page": 11,
+    "children": [],
+    "node_id": "4"
+  },
+  {
+    "title": "1.4 FAQ",
+    "page": 12,
+    "children": [],
+    "node_id": "5"
+  },
+  {
+    "title": "장 고영향 인공지능사업자 책무 관련 조항",
+    "page": 14,
+    "children": [
+      {
+        "title": "관련 법조항",
+        "page": 15,
+        "node_id": "6.1"
+      },
+      {
+        "title": "관련 시행령",
+        "page": 16,
+        "node_id": "6.2"
+      }
+    ],
+    "node_id": "6"
+  },
+  {
+    "title": "장 고영향 인공지능사업자 책무 조치사항",
+    "page": 17,
+    "children": [
+      {
+        "title": "위험관리방안의 수립운영",
+        "page": 18,
+        "children": [
+          {
+            "title": "위험관리정책 수립 및 이행",
+            "page": 18,
+            "node_id": "7.1.1"
+          },
+          {
+            "title": "위험 식별",
+            "page": 20,
+            "node_id": "7.1.2"
+          },
+          {
+            "title": "위험 분석 및 평가",
+            "page": 21,
+            "node_id": "7.1.3"
+          },
+          {
+            "title": "위험 처리",
+            "page": 22,
+            "node_id": "7.1.4"
+          },
+          {
+            "title": "위험관리정책 개선",
+            "page": 23,
+            "node_id": "7.1.5"
+          },
+          {
+            "title": "위험관리 조직체계 수립 및 운영",
+            "page": 24,
+            "node_id": "7.1.6"
+          },
+          {
+            "title": "정보의 제공",
+            "page": 26,
+            "node_id": "7.1.7"
+          },
+          {
+            "title": "유관 조직과의 협력",
+            "page": 27,
+            "node_id": "7.1.8"
+          }
+        ],
+        "node_id": "7.1"
+      },
+      {
+        "title": "기술적으로 가능한 범위에서의 인공지능이 도출한 최종결과",
+        "page": 29,
+        "node_id": "7.2"
+      },
+      {
+        "title": "이용자 보호 방안의 수립운영",
+        "page": 30,
+        "node_id": "7.3"
+      }
+    ],
+    "node_id": "7"
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "text": "인공지능 투명성 확보 가이드라인\n20\n5\n참고 자료\n인공지능 생성 서비스 사례\nl 이미지 기반 서비스\n-  인공지능 기술에 기반하여 예술 작품이나 사실적인 사진, 복잡한 이미지나 효과를 적용하는 등의 \n방식으로 새로운 이미지를 창작 및 수정\n- 대표적인 이미지 인공지능 콘텐츠 생성 서비스로 DALL･EOpenAI, FireFlyAdobe, Stable \nDiffusionStability AI 등의 플랫폼이 존재\n이미지 생성형 인공지능 서비스를 통한 이미지 생성(좌: Firefly, 우: Stable Diffusion)\nl 동영상 기반 서비스\n-  영상을 생성하거나 영상의 변환･편집 등 작업을 수행하며1), 주로 사용자가 작성한 각본(Script)과 \n입력한 명령어에 따라 영상을 자동으로 생성2)\n- 텍스트(Text-To-Video) 혹은 이미지(Image-To-Video)를 바탕으로 동영상을 생성하는 서비\n스는 SoraOpenAI, VideoFx/Veo3Google, Stable Video DiffusionStability AI 등의 플랫폼이 존재\n1) WANG JIAJIA. (2024).",
+    "metadata": {
+      "page": 24,
+      "source": "1._260126_인공지능_투명성_확보_가이드라인.pdf",
+      "chunk_index": 0,
+      "chunk_method": "semantic_local"
+    }
+  },
+  {
+    "text": "정보 특성과 개인적 특성이 생성형 AI 서비스 사용의도에 미치는 영향에 관한 실증적 연구(박사). 세종대학교 \n대학원, 박사학위논문\n2) 손한빈. (2023). 생성형 인공지능의 서예 콘텐츠 초탐. 동양예술, (59), 5-30. ",
+    "metadata": {
+      "page": 24,
+      "source": "1._260126_인공지능_투명성_확보_가이드라인.pdf",
+      "chunk_index": 1,
+      "chunk_method": "semantic_local"
+    }
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "text": "25\n사례\n해외 주요기업 인공지능 위험관리 조직 운영\n1. OpenAI Preparedness Team\n– \n위치연구안전 부문 산하\n: \n·\n조직 역할:\n모델 배포 전 리스크안보악용 가능성 등검증\n- \n(\n, \n) \n안전 실험 및 레드팀\n운영\n- \n‘\n(red-teaming)’ \n모델 개선 시 위험 평가 프로세스 통합\n- \n운영 방식\n및 보드에 직접 보고 \n최고 의사결정 레벨과 긴밀히 연결\n: CEO \n→ \n2. Google DeepMind AI Safety & Alignment Team\n– \n위치\n연구 부문 내 독립적 \n조직\n: DeepMind \nSafety \n조직 역할:\n대규모 언어모델과 강화학습 모델의 안전성 테스트\n- \n윤리책임성 관련 부서\n와 협력\n- \n·\n(Ethics & Society)\n운영 방식:\n독립적 검증팀 \n연구팀과 분리하여 개발자검증자가 되지 않도록 구조화\n- \n\"\n=\n\"\n→ \n정기적으로 외부 자문위원단\n과 협업\n- \n(ethics board)\n3. Microsoft \nResponsible AI Office \n– \n위치\n직속\n: Chief Responsible AI Officer \n조직 역할:\n사내 모든 \n프로젝트의 리스크 리뷰승인\n- \nAI \n·\n준수 여부 심사\n- “Responsible AI Standard” \n기술팀법무팀\n팀 등과 교차 기능 조직 운영\n- \n, \n, PR\n운영 방식:\n중 구조\n- AETHER Committee, Office of Responsible AI, Responsible AI Strategy in Engineering \n3\n→ \n각 제품서비스팀이 \n기능을 배포하기 전 \n의 심사를 거쳐야 함\n- \n·\nAI \nRAIO\n조직\n4.",
+    "metadata": {
+      "page": 26,
+      "source": "4._260122_고영향_인공지능_사업자_책무_가이드라인-1.pdf",
+      "chunk_index": 0,
+      "chunk_method": "semantic_local"
+    }
+  },
+  {
+    "text": "IBM \nAI Ethics Board & GRC \n– \n위치\n산하 \n부문과 연계\n: CIO \nGRC(Governance, Risk, Compliance) \n조직 역할:\n제품서비스 출시 전 윤리법적 위험 심사\n- AI Ethics Board: \n·\n·\n팀\n와 같은 툴을 활용해 리스크 관리 자동화\n- GRC \n: watsonx.governance\n운영 방식:\n다학제적 구성 법무엔지니어정책\n- \n(\n, \n, \n, HR)\n모든 \n프로젝트는 반드시 \n를 거쳐야 승인 가능\n- \nAI \nEthics Board\n",
+    "metadata": {
+      "page": 26,
+      "source": "4._260122_고영향_인공지능_사업자_책무_가이드라인-1.pdf",
+      "chunk_index": 1,
+      "chunk_method": "semantic_local"
+    }
+  }
+]

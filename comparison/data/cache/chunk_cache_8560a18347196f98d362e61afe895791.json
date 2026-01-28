@@ -1,0 +1,11 @@
+[
+  {
+    "text": "표시 방법\n19\n5) 기타 파일 형식의 생성물\nl 적용대상: 이외 파일 형식(슬라이드, PDF 등)의 결과물을 제공하는 경우\nl 서비스 예시: Canva, Gamma 등\nl 표시 방법\n➊ (사람이 인식할 수 있는 방법) 파일 포맷의 특성을 고려하여 적합한 방법으로 표시\n     ☞ 머리말 또는 작성 영역 초반(문서), 첫 슬라이드의 일부 영역(시트 형식) 등에 AI 생성 \n사실을 표시\n➋ (기계가 판독할 수 있는 방법) 메타데이터 활용\n    ☞ 파일 작성자 등 메타데이터 영역에 AI 생성물임을 표시\n    ☞ 비가시적인 방법을 사용할 경우 다운로드 시 문구·음성 등으로 인공지능 기반 생성 사실에 \n대해 1회 이상 안내\n  \n출처: https://www.iptc.org/std/photometadata/documentation/userguide/#_applying_metadata_to_ai_generated_images\n｜사진과 문서의 메타데이터 활용 예시｜\n",
+    "metadata": {
+      "page": 23,
+      "source": "1._260126_인공지능_투명성_확보_가이드라인.pdf",
+      "chunk_index": 0,
+      "chunk_method": "semantic_local"
+    }
+  }
+]

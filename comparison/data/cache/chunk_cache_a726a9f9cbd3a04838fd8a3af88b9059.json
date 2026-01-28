@@ -1,0 +1,11 @@
+[
+  {
+    "text": "96\n인공지능 모델명\n음성 인식 \n모델\nAI \n버전\nv1.0\n목적\n면접 영상의 음성을 텍스트로 변환\n모델 유형\n기반 음성인식 모델\nSeq2Seq \n알고리즘\n특징 추출\n또는 \n기반 표현 생성\n1) \n: Mel-spectrogram \nWav2Vec \n음성 인식 및 텍스트 변환\n기반 \n모델\n2) \n: Attention \nSeq2Seq \n설명가능성 확보 \n방안\n변환 텍스트의 오류 가능성 고지 및 원문 음성 재확인 기능 제공\n1) \n신뢰도 점수\n제공\n2) STT \n(Confidence score) \n오디오 입력 품질 저하 시 품질 경고 문구 제공\n3) \n관련 문서\n채용 \n시스템 개요서 \nAI \nv1.2 (ID: REF-2026-001)\n채용 \n시스템 사용 가이드 \nAI \nv1.3 (ID: REF-2026-002)\n인공지능 모델명\n텍스트 분석 \n모델\nAI \n버전\nv1.0\n목적\n답변 텍스트를 분석하여 지원자의 역량 평가\n모델 유형\n기반 \n모델\nTransformers \nLLM \n알고리즘\n임베딩 생성\n1) \n: \n이력서자기소개서의 텍스트 데이터를 입력으로 받아 \n \n·\n① \n기반 문장 임\nTransformers \n베딩 생성\n ② \n변환 텍스트 데이터를 입력으로 받아 \n기반 문장 임베딩 생성\nSTT\nTransformers \n근거 문장 검색\n기반으로 역량 검사 결과에 대한 근거 문장 제공 \n2) \n: RAG \n설명가능성 확보 \n방안\n분석 결과의 평가 근거 문장 키워드 및 하이라이트 제공\n1) \n사용 가이드를 통해 점수 산정 로직 안내\n2) \n집단별 결과 편차 점검성별연령 등\n및 결과 보고서 제공\n3) \n(\n·\n) \n관련 문서\n채용 \n시스템 개요서 \nAI \nv1.2 (ID: REF-2026-001)\n채용 \n시스템 사용 가이드 \nAI \nv1.3 (ID: REF-2026-002)\n",
+    "metadata": {
+      "page": 97,
+      "source": "4._260122_고영향_인공지능_사업자_책무_가이드라인-1.pdf",
+      "chunk_index": 0,
+      "chunk_method": "semantic_local"
+    }
+  }
+]

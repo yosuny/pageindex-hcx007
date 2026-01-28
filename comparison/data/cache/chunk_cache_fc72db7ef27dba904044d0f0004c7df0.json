@@ -1,0 +1,20 @@
+[
+  {
+    "text": "표시 방법\n21\n동영상 생성형 인공지능 서비스 Sora를 통한 동영상 생성 예시\n∙ 아래 프롬프트로 생성된 영상 중 한 장면\n∙ “한 스타일리시한 여성이 따뜻하고 빛나는 네온과 애니메이\n션 도시 간판으로 가득 찬 도쿄 거리를 걷고 있습니다. 그녀\n는 검은색 가죽 재킷, 긴 빨간색 드레스, 검은색 부츠를 신\n고 검은색 지갑을 들고 있습니다. 선글라스와 빨간색 립스틱\n을 바릅니다. 그녀는 자신감 넘치고 캐주얼하게 걷습니다.",
+    "metadata": {
+      "page": 25,
+      "source": "1._260126_인공지능_투명성_확보_가이드라인.pdf",
+      "chunk_index": 0,
+      "chunk_method": "semantic_local"
+    }
+  },
+  {
+    "text": "거\n리는 축축하고 반사적 이어서 다채로운 조명의 거울 효과를 \n만들어 냅니다. 많은 보행자가 걸어 다닙니다.”\n출처: Open AI 공식 홈페이지\nl 텍스트 기반 서비스\n- 대규모 텍스트 데이터를 기반으로 한 언어 모델을 활용해 인간과 유사한 레벨에서 언어를 이해하고 \n생성 및 응답함으로써 높은 성능을 발휘\n- 대표적으로 ChatGPTOpenAI, GeminiGoogle, ClaudeClaude, HyperCLOVAXNaver 등의 \n서비스가 존재\n텍스트 생성형 인공지능 서비스를 통한 텍스트 생성(좌: ChatGPT, 우: Gemini)\nl 오디오 기반 서비스\n- 인공지능 기술을 사용하여 사람의 목소리나 음악을 학습하여 새로운 음성이나 오디오 생성\n- 텍스트(Text-To-Speech)를 바탕으로 가상 비서, 음성 보조 기기 등에 활용되고 있으며, \nWaveNetGoogle, AI SpeechMicrosoft Azure, Amazon PollyAWS 등이 존재\n",
+    "metadata": {
+      "page": 25,
+      "source": "1._260126_인공지능_투명성_확보_가이드라인.pdf",
+      "chunk_index": 1,
+      "chunk_method": "semantic_local"
+    }
+  }
+]

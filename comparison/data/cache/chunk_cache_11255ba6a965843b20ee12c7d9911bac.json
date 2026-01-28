@@ -1,0 +1,20 @@
+[
+  {
+    "text": "- 25 -\n부록\n1. 인공지능 영향평가서 양식 및 \n작성 예시\n2.",
+    "metadata": {
+      "page": 26,
+      "source": "5._260122_인공지능_영향평가_가이드라인.pdf",
+      "chunk_index": 0,
+      "chunk_method": "semantic_local"
+    }
+  },
+  {
+    "text": "인공지능시스템 기능별 침해  \n발생 가능 작동원리 예시\n3. 인공지능 영향평가 지원 안내\n4. 인공지능 영향평가 관련 FAQ\n",
+    "metadata": {
+      "page": 26,
+      "source": "5._260122_인공지능_영향평가_가이드라인.pdf",
+      "chunk_index": 1,
+      "chunk_method": "semantic_local"
+    }
+  }
+]

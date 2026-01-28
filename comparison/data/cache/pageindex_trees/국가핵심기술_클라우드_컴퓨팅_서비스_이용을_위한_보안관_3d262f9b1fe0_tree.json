@@ -1,0 +1,113 @@
+[
+  {
+    "title": "01장 가이드 개요",
+    "page": 1,
+    "children": [
+      {
+        "title": "목적 및 필요성",
+        "page": 1,
+        "children": [],
+        "node_id": "1.1"
+      },
+      {
+        "title": "추진 경과",
+        "page": 2,
+        "children": [],
+        "node_id": "1.2"
+      },
+      {
+        "title": "효력",
+        "page": 3,
+        "children": [],
+        "node_id": "1.3"
+      },
+      {
+        "title": "구성",
+        "page": 3,
+        "children": [],
+        "node_id": "1.4"
+      },
+      {
+        "title": "용어 정의",
+        "page": 4,
+        "children": [],
+        "node_id": "1.5"
+      },
+      {
+        "title": "설계 과정",
+        "page": 5,
+        "children": [],
+        "node_id": "1.6"
+      }
+    ],
+    "node_id": "1"
+  },
+  {
+    "title": "02장 클라우드 컴퓨팅 서비스 환경 內 국가핵심기술 관련 정보를 저장‧처리하는 경우",
+    "page": 15,
+    "children": [
+      {
+        "title": "기본원칙",
+        "page": 15,
+        "children": [],
+        "node_id": "2.1"
+      },
+      {
+        "title": "관리적 보안",
+        "page": 18,
+        "children": [],
+        "node_id": "2.2"
+      },
+      {
+        "title": "물리적 보안",
+        "page": 21,
+        "children": [],
+        "node_id": "2.3"
+      },
+      {
+        "title": "기술적 보안",
+        "page": 23,
+        "children": [],
+        "node_id": "2.4"
+      },
+      {
+        "title": "보안사고 대응",
+        "page": 30,
+        "children": [],
+        "node_id": "2.5"
+      }
+    ],
+    "node_id": "2"
+  },
+  {
+    "title": "03장 클라우드 컴퓨팅 서비스에 저장된 국가핵심기술 관련 정보에 대한 외국기업 등의 접근권한 부여‧열람‧사용 등을 허용하는 경우",
+    "page": 35,
+    "children": [
+      {
+        "title": "기본원칙",
+        "page": 35,
+        "children": [],
+        "node_id": "3.1"
+      },
+      {
+        "title": "보안관리",
+        "page": 36,
+        "children": [],
+        "node_id": "3.2"
+      }
+    ],
+    "node_id": "3"
+  },
+  {
+    "title": "[별 첨1] 국내·외 클라우드 컴퓨팅 서비스 관련 법·제도 현황",
+    "page": null,
+    "children": [],
+    "node_id": "4"
+  },
+  {
+    "title": "[별 첨2] 클라우드 컴퓨팅 서비스 환경에서의 국가핵심기술 보호 실태조사 체크리스트",
+    "page": null,
+    "children": [],
+    "node_id": "5"
+  }
+]

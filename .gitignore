@@ -1,15 +1,53 @@
-.ipynb_checkpoints
-__pycache__
-files
-index
-temp/*
-chroma-collections.parquet
-chroma-embeddings.parquet
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# Virtual Environment
+venv/
+.venv/
+
+# Environment Variables
+.env
+.env.*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
 .DS_Store
-.env*
-notebook
+Thumbs.db
+
+# Project Specific - Temp Files
+temp/*
+files/
+index/
+notebook/
 SDK/*
-log/*
-logs/
 parts/*
 json_results/*
+
+# Logs
+log/*
+logs/
+*.log
+
+# Cache
+chroma-collections.parquet
+chroma-embeddings.parquet
+
+# Archive (Personal Reference)
+archive/
+
+# Personal Reference Files (if not in archive)
+task.md
+implementation_plan.md
+GROUND_RULES.md
+PROJECT_CONTEXT.md
+
+# Large Data Files (optional - uncomment if needed)
+# comparison/data/documents/*.pdf
+# comparison/qdrant_storage/
