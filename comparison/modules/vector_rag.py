@@ -64,9 +64,8 @@ class VectorRAG:
             # Extract filename from path
             import os
             doc_name = os.path.basename(source_path) if source_path != 'Unknown' else 'Unknown'
-            # Remove extension for cleaner display
-            doc_title = os.path.splitext(doc_name)[0] if doc_name != 'Unknown' else 'Unknown'
-            context_parts.append(f"[문서: {doc_title}] (페이지: {page})\n{doc['text']}")
+            # Use full filename for clarity
+            context_parts.append(f"[[{doc_name}]] (p.{page})\n{doc['text']}")
             
         context = "\n\n".join(context_parts)
         
@@ -77,8 +76,9 @@ class VectorRAG:
 1. 반드시 아래 [검색된 문서]에 포함된 내용만 사용하여 답변하세요.
 2. 검색된 문서에 없는 정보는 절대 사용하지 마세요.
 3. 추측하거나 일반 지식을 사용하지 마세요.
-4. 답변 시 반드시 출처(문서명, 페이지)를 명시하세요.
-5. 검색된 문서에서 답을 찾을 수 없으면 "검색된 문서에서 해당 정보를 찾을 수 없습니다."라고 답하세요."""
+4. 답변 시 근거가 되는 문서를 반드시 `[[파일명]] (p.페이지)` 형식으로 명시하세요. (예: [[AI기본법.pdf]] (p.12))
+5. 여러 문서를 참고했다면 모두 표기하세요.
+6. 검색된 문서에서 답을 찾을 수 없으면 "검색된 문서에서 해당 정보를 찾을 수 없습니다."라고 답하세요."""
 
         user_prompt = f"""[검색된 문서]
 {context}
@@ -90,8 +90,9 @@ class VectorRAG:
 
 [답변 규칙]
 - 위 [검색된 문서]의 내용만 사용하세요.
-- 문서에 없는 내용은 답변하지 마세요.
-- 출처는 반드시 "[문서명] 페이지 N" 형식으로 인용하세요.
+- 각 문장의 끝에 반드시 출처를 표기하세요.
+- 출처 표기 형식: 문장 끝에 `[[실제파일명.pdf]] (p.페이지번호)` 를 추가.
+- **주의**: '파일명'이라는 단어를 쓰지 말고, 위 [검색된 문서]에 적힌 실제 파일 이름(예: 6._산업기술보호법.pdf)을 그대로 사용하세요.
 
 [답변]"""
 

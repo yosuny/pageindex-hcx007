@@ -64,12 +64,12 @@ class PageIndexRAG:
         pdf_name = Path(pdf_path).stem[:30]  # Truncate long names
         return os.path.join(self.cache_dir, f"{pdf_name}_{pdf_hash}_tree.json")
     
-    def _add_node_ids(self, toc: List, prefix: str = "") -> None:
+    def _add_node_ids(self, toc, prefix: str = "") -> None:
         """Add hierarchical node IDs to tree structure in-place."""
-        if isinstance(toc, list):
-            for i, node in enumerate(toc):
-                node_id = f"{prefix}{i+1}" if prefix else str(i+1)
-                if isinstance(node, dict):
+        nodes = toc if isinstance(toc, list) else [toc]
+        for i, node in enumerate(nodes):
+            node_id = f"{prefix}{i+1}" if prefix else str(i+1)
+            if isinstance(node, dict):
                     node["node_id"] = node_id
                     if "children" in node and node["children"]:
                         self._add_node_ids(node["children"], f"{node_id}.")
@@ -135,6 +135,10 @@ class PageIndexRAG:
             print(f"Loading cached tree from {cache_path}")
             with open(cache_path, 'r', encoding='utf-8') as f:
                 tree = json.load(f)
+            
+            # Ensure node IDs exist (in case cache is old or missing them)
+            self._add_node_ids(tree)
+            
             self.trees[pdf_path] = tree
             return tree
             
@@ -184,8 +188,9 @@ Be precise with page numbers. Return valid JSON only."""
         # Step 3: Add node IDs
         self._add_node_ids(toc)
         
-        # Step 4: Generate summaries for each section (skip for now to speed up)
-        # toc = self._add_summaries(toc, page_list)
+        # Step 4: Generate summaries for each section
+        print("Generating section summaries (Thinking Mode)...")
+        toc = self._add_summaries(toc, page_list)
         
         # Cache the result
         with open(cache_path, 'w', encoding='utf-8') as f:
@@ -219,7 +224,11 @@ Content:
 Summary:"""
                     
                     try:
-                        summary = self._llm_call(summary_prompt)
+                        # Use LOW thinking effort for summaries to speed up processing
+                        summary = self.llm.generate(
+                            [{"role": "user", "content": summary_prompt}], 
+                            thinking_effort="low"
+                        )
                         node["summary"] = summary.strip()[:500]
                     except:
                         node["summary"] = f"Section about {node.get('title', 'this topic')}"
@@ -278,6 +287,11 @@ Return valid JSON only."""
             relevant_nodes = extract_json(response)
             if not relevant_nodes:
                 relevant_nodes = json.loads(response)
+            # Ensure relevant_nodes is always a list (LLM may return single dict instead of array)
+            if isinstance(relevant_nodes, dict):
+                relevant_nodes = [relevant_nodes]
+            if not isinstance(relevant_nodes, list):
+                relevant_nodes = [{"node_id": "1", "title": "Document"}]
         except:
             relevant_nodes = [{"node_id": "1", "title": "Document"}]
             
@@ -286,7 +300,17 @@ Return valid JSON only."""
         results = []
         
         for node_info in relevant_nodes[:top_k]:
-            node = self._find_node(tree, node_info.get("node_id", "1"))
+            raw_id = str(node_info.get("node_id", "1"))
+            node = self._find_node(tree, raw_id)
+            
+            # Fallback: Try zfill(4) if exact match fails (e.g. "2" -> "0002")
+            if not node and raw_id.isdigit():
+                node = self._find_node(tree, raw_id.zfill(4))
+            
+            # Fallback: Try stripping if padded (e.g. " 0002 " -> "0002")
+            if not node:
+                node = self._find_node(tree, raw_id.strip())
+                
             if node:
                 start_page = node.get("page", 1) - 1
                 end_page = min(start_page + 2, len(page_list) - 1)
@@ -382,15 +406,15 @@ Return valid JSON only."""
             
         context = "\n\n".join(context_parts)
         
-        # Generate answer - STRICT: only use retrieved context
-        system_prompt = """당신은 법률 문서 분석 전문가입니다.
+        # Generate answer - RELAXED: Prioritized grounding with inference
+        system_prompt = """당신은 법률 문서 분석 전문가입니다. 사용자의 질문에 대해 제공된 [검색된 섹션]을 바탕으로 도움을 주는 답변을 작성하세요.
 
-**중요 규칙:**
-1. 반드시 아래 [검색된 섹션]에 포함된 내용만 사용하여 답변하세요.
-2. 검색된 섹션에 없는 정보는 절대 사용하지 마세요.
-3. 추측하거나 일반 지식을 사용하지 마세요.
-4. 답변 시 반드시 출처(섹션명, 페이지)를 명시하세요.
-5. 검색된 섹션에서 답을 찾을 수 없으면 "검색된 문서에서 해당 정보를 찾을 수 없습니다."라고 답하세요."""
+**작성 가이드:**
+1. **근거 기반**: 답변 내용의 90% 이상은 반드시 [검색된 섹션]에서 가져와야 합니다.
+2. **유연한 추론**: 명시적인 문장이 없더라도, 문맥상 합리적인 추론이 가능하다면 이를 포함하여 답변하세요.
+3. **종합**: 여러 섹션에 흩어진 정보를 종합하여 논리적으로 서술하세요.
+4. **출처 명시**: 가능한 경우 (섹션명, 페이지)를 언급하여 신뢰도를 높이세요.
+5. **한계 인정**: 정답을 확신할 수 없는 경우, "문서에 직접적인 언급은 없으나..."와 같이 전제를 달고 관련 내용을 설명해 주세요. 반환된 섹션 내용을 최대한 활용하여 답변을 구성하고, 무조건적인 "모름" 답변은 지양하세요."""
 
         user_prompt = f"""[검색된 섹션]
 {context}
@@ -400,10 +424,11 @@ Return valid JSON only."""
 [질문]
 {query}
 
-[답변 규칙]
-- 위 [검색된 섹션]의 내용만 사용하세요.
-- 섹션에 없는 내용은 답변하지 마세요.
-- 출처(Section 번호, 페이지)를 반드시 인용하세요.
+[답변 가이드]
+- 위 [검색된 섹션]의 내용을 종합하여 답변하세요.
+- 단편적인 정보들을 연결하여 논리적인 결론을 도출하세요.
+- 섹션에 명시되지 않았더라도 문맥상 확실한 내용은 포함하세요.
+- 출처(Section 번호, 페이지)를 인용하세요.
 
 [답변]"""
 

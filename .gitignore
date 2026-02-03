@@ -47,9 +47,16 @@ task.md
 implementation_plan.md
 GROUND_RULES.md
 PROJECT_CONTEXT.md
+docs/GROUND_RULES.md
 
 # Vector Database Storage
 comparison/qdrant_storage/
 
 # Large Data Files - PDF Documents
 comparison/data/documents/*.pdf
+
+# Original PageIndex Repo Artifacts (Unused in Comparison)
+tests/
+tutorials/
+cookbook/
+run_pageindex.py

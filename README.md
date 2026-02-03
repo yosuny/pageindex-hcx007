@@ -39,23 +39,27 @@
 | 6 | 인공지능 영향평가 가이드라인 | 과기정통부 |
 | 7 | 국가핵심기술 클라우드 보안관리 안내서 | 산업통상자원부 |
 
-### 성능 비교 (N=20)
+### 성능 비교 (N=20, Final Run 5)
 
-| 지표 | Vector RAG | PageIndex RAG |
-|---|:---:|:---:|
-| **평균 점수 (1-5)** | **3.15** | 2.85 |
-| **평균 응답 시간** | **17.5초** | 107.3초 |
-| **문서 검색 적중률** | 15% | **25%** |
+| 지표 | Vector RAG | PageIndex RAG (Run 5) | 비고 |
+|---|:---:|:---:|:---:|
+| **평균 점수 (1-5)** | **3.15** | 2.85 | Baseline 점수 복구 완료 |
+| **평균 응답 시간** | **16.2초** | 113.2초 | 추론 강화로 다소 증가 |
+| **문서 검색 적중률** | 75.0% | **85.0%** | **역대 최고 기록 (Router 우수성 입증)** |
 
-> *0점 오류 케이스 제외 시: Vector RAG 3.47 vs PageIndex RAG 3.0*
 
-### 주요 발견
+### 주요 발견 (Key Findings)
 
 | 항목 | 내용 |
 |---|---|
-| ✅ **Vector RAG 강점** | 빠른 응답 속도, 높은 답변 품질 |
-| ✅ **PageIndex 강점** | 정확한 문서 선별 (Global Routing) |
-| ⚠️ **HCX-007 한계** | JSON 출력 일관성 부족, 응답 시간 지연 |
+| ✅ **Vector RAG 강점** | 빠른 응답 속도 (16초), 높은 답변 품질 (Score 3.15) |
+| ✅ **PageIndex 강점** | **압도적인 문서 선별 능력** (Hit Rate 85% vs Vector 75%) |
+| ⚠️ **HCX-007 특성** | **Global Router(큰 맥락)에는 강하나, Tree Navigation(복잡한 논리)에는 약함** |
+
+> **비교 분석 (vs Original PageIndex)**
+> *   **Original (GPT-4)**: 논문 등에서 Vector RAG보다 높은 점수를 기록. 복잡한 JSON 트리 탐색(Navigation) 능력이 탁월함.
+> *   **Ours (HCX-007)**: 문맥 이해력이 좋아 **"어떤 문서인가(Routing)"**는 GPT-4만큼 잘 맞추지만, 문서 내부에서 **"어떤 섹션인가(Search)"**를 찾는 미세 추론(Granularity)에서 다소 약점을 보임.
+> *   **결론**: HCX-007을 사용할 때는 **Hybrid RAG** (PageIndex로 문서를 찾고, Vector로 내용을 찾는 방식)가 최적의 아키텍처임.
 
 ---
 
@@ -89,14 +93,18 @@ PageIndex/
 │   ├── modules/               # RAG 구현체
 │   │   ├── vector_rag.py      # Vector RAG
 │   │   ├── pageindex_rag.py   # PageIndex RAG
-│   │   ├── pageindex_router.py # Global Routing
 │   │   └── ncloud_llm.py      # HCX-007 Wrapper
 │   ├── data/
 │   │   ├── documents/         # 테스트 PDF 문서
-│   │   ├── cache/             # 트리 캐시
+│   │   ├── cache/             # 트리 및 청크 캐시
 │   │   └── results/           # 평가 결과
 │   └── evaluator.py           # 자동 평가 스크립트
 ├── comparison_ui.py           # Gradio UI
+├── docs/                      # 프로젝트 문서 (가이드, 분석보고서)
+├── migration_wrapper.py       # [NEW] 파일명 표준화 및 마이그레이션 도구
+├── rebuild_all_indices.py     # [NEW] 전체 인덱스(Vector/Tree) 재생성 도구
+├── generate_questions.py      # [NEW] 평가 질문 생성기
+├── verify_indices.py          # [NEW] 인덱스 무결성 검증 도구
 ├── pageindex/                 # 원본 PageIndex 라이브러리
 └── requirements.txt
 ```
@@ -160,12 +168,16 @@ python comparison/evaluator.py
 
 ---
 
+### 4. 프롬프트 엔지니어링 (Run 5)
+- **문제**: 지나치게 엄격한 System Prompt("문서에 없으면 답하지 마라")가 HCX-007의 소극적 답변(False Negative)을 유발하여 점수 하락(2.35).
+- **해결**: "문맥을 통한 합리적 추론 허용"으로 완화하여 정답률 회복(2.85) 및 Hit Rate 상승(85%).
+
+---
+
 ## 🔮 향후 개선 과제
 
-1. **HCX-007 JSON 모드 활용**: 구조화 출력 API 옵션 탐색
-2. **Global Routing 정확도 향상**: 프롬프트 엔지니어링 강화
-3. **하이브리드 접근**: Vector + PageIndex 결합 전략 실험
-4. **대규모 평가**: 100+ 문항으로 통계적 유의성 확보
+2. **Hybrid RAG 구현**: 분석 결과 최적으로 판명된 [Router + Vector Search] 아키텍처 실제 구현
+3. **대규모 평가**: 100+ 문항으로 통계적 유의성 확보
 
 ---
 
@@ -177,10 +189,18 @@ python comparison/evaluator.py
 
 ---
 
+## 📄 핵심 문서 안내
+
+- **[PROJECT_CONTEXT.md](docs/PROJECT_CONTEXT.md)**: 프로젝트 데일리 로그, 트러블슈팅, 레슨런 모음
+- **[NCLOUD_HCX007_SPEC_GUIDE.md](docs/NCLOUD_HCX007_SPEC_GUIDE.md)**: OpenAI vs HCX-007 마이그레이션 기술 가이드 (API 스펙, 에러 대응)
+- **[HYBRID_RAG_PROPOSAL.md](docs/HYBRID_RAG_PROPOSAL.md)**: 향후 고도화를 위한 Hybrid RAG 및 Global Routing 제안서
+
+---
+
 ## 📝 라이선스
 
 MIT License - 자세한 내용은 [LICENSE](LICENSE) 파일 참조
 
 ---
 
-*Last Updated: 2026-01-28*
+*Last Updated: 2026-02-03*

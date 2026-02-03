@@ -19,7 +19,7 @@ class NCloudLLM:
         self.temperature = temperature
         self.max_tokens = max_tokens
 
-    def generate(self, messages: List[Dict[str, str]], thinking_effort: str = None) -> str:
+    def generate(self, messages: List[Dict[str, str]], thinking_effort: str = None, response_format: Dict = None) -> str:
         """
         Generate response from HCX-007
         """
@@ -56,17 +56,15 @@ class NCloudLLM:
             "includeAiFilters": True,
             "seed": 0
         }
+        
+        # Add response format (Structured Output) if provided
+        if response_format:
+            data["responseFormat"] = response_format
 
         # Add thinking parameter if supported/needed 
         # Note: Actual API parameter for thinking might vary. 
-        # Based on KG-RAG guide, we assume standard chat completion, 
-        # but if specific parameter is needed for thinking, add it here.
-        # For now, we rely on system prompt or model's inherent capability 
-        # unless explicit parameter is documented in the code we copied.
-        # (KG-RAG guide mentions thinking tokens in response, suggesting it's native)
-        
-        # If thinking control is via parameter (hypothetical, need to check API docs or legacy code):
-        if effort != "none":
+        # based on KG-RAG guide, we assume standard chat completion.
+        if effort != "none" and not response_format: # Structured Output and Thinking are mutually exclusive
              data["thinking"] = {"effort": effort}
 
 

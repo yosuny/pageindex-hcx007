@@ -123,6 +123,7 @@ def get_json_content(response):
          
 
 def extract_json(content):
+    import re
     try:
         # First, try to extract JSON enclosed within ```json and ```
         start_idx = content.find("```json")
@@ -136,8 +137,12 @@ def extract_json(content):
 
         # Clean up common issues that might cause parsing errors
         json_content = json_content.replace('None', 'null')  # Replace Python None with JSON null
-        json_content = json_content.replace('\n', ' ').replace('\r', ' ')  # Remove newlines
-        json_content = ' '.join(json_content.split())  # Normalize whitespace
+        
+        # Try to extract just the first JSON object using regex
+        # This handles cases where LLM outputs multiple JSON objects or extra text
+        json_match = re.search(r'\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}', json_content, re.DOTALL)
+        if json_match:
+            json_content = json_match.group(0)
 
         # Attempt to parse and return the JSON object
         return json.loads(json_content)
@@ -147,6 +152,10 @@ def extract_json(content):
         try:
             # Remove any trailing commas before closing brackets/braces
             json_content = json_content.replace(',]', ']').replace(',}', '}')
+            # Try regex extraction again with simpler pattern
+            json_match = re.search(r'\{.*\}', json_content, re.DOTALL)
+            if json_match:
+                json_content = json_match.group(0)
             return json.loads(json_content)
         except:
             logging.error("Failed to parse JSON even after cleanup")
